@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 style="color:#ffa800">iFrame:</h2>
+    <h3>The message from the parent appears below:</h3>
+    <div id="message">Please send some message from the input above.</div>
+    <script>
+      window.addEventListener("message", function (event) {
+        document.querySelector("#message").innerText =
+          typeof event.data === "string"
+            ? event.data
+            : JSON.stringify(event.data);
+      });
+    </script>
+  </body>
+</html>

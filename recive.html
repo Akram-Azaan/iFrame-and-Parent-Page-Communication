@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PostMessage Demo</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1 style="color:green">Send message from iFrame to parent</h1>
+    <div id="app">
+      <h3>Messages Sent by the Child will be visible here:</h3>
+      <div id="messageArea">No message received from child yet.</div>
+    </div>
+
+    <iframe
+      style="
+        margin-top: 1em;
+        width: 100%;
+        height: 128px;
+        border: solid 1px #ffa800;
+        background-color: #f0f0f0;
+        border-radius: 16px;
+        overflow: hidden;
+      "
+      title="Child iframe"
+      src="https://testing-send.netlify.app/"
+    ></iframe>
+    <!-- <iframe></iframe>
+    src="iframe_that_sends.html"
+    ></iframe> -->
+
+    <br><br><br>
+
+    <a href="send.html">send to iframe only</a>
+
+    <br><br>
+
+    <a href="index.html">back</a>
+
+    <br><br><br><br><br>
+
+    <a href="https://javascript.info/cross-window-communication"> how to documnentation</a>
+    
+    <script>
+      //Send information from child to parent.
+
+      function onMessageHandler(event) {
+        if (typeof event.data === "string") {
+          messageArea.innerText = event.data;
+          console.log("data sent to parent : " + event.data)
+        }
+      }
+
+      window.addEventListener("message", onMessageHandler);
+    </script>
+  </body>
+</html>
